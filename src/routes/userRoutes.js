@@ -1,3 +1,5 @@
+import { login } from "../controllers";
+
 const getAppHealth = {
   handler: async (request, h) => {
     try {
@@ -16,6 +18,11 @@ const userRoutes = [
     method: "GET",
     path: "/api/health",
     config: getAppHealth,
+  },
+  {
+    method: "POST",
+    path: "/api/login",
+    config: login,
   },
 ];
 
