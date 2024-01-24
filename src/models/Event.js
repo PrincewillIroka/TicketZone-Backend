@@ -6,6 +6,7 @@ const EventShema = new mongoose.Schema(
     title: String,
     category: { type: ObjectId, ref: "Category" },
     tags: [],
+    venue: String,
   },
   { usePushEach: true, timestamps: true }
 );
