@@ -3,10 +3,15 @@ import Hapi from "@hapi/hapi";
 import routes from "./routes";
 import db from "./db";
 
+const { APP_PORT, APP_FRONTEND, NODE_ENV } = process.env;
+
 const init = async () => {
   const server = Hapi.server({
-    port: process.env.APP_PORT,
+    port: APP_PORT,
     host: "localhost",
+    routes: {
+      cors: NODE_ENV === "development" ? true : { origin: [APP_FRONTEND] },
+    },
   });
 
   server.route(routes);
