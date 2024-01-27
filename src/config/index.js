@@ -19,6 +19,7 @@ const envVarsSchema = Joi.object({
   ENCRYPTION_ALGORITHM: Joi.string(),
   ENCRYPTION_INIT_VECTOR: Joi.string(),
   ENCRYPTION_SECURITY_KEY: Joi.string(),
+  JWT_SECRET: Joi.string(),
 })
   .unknown(true)
   .required();
@@ -50,4 +51,5 @@ export default {
     initVector: envVars.ENCRYPTION_INIT_VECTOR,
     securityKey: envVars.ENCRYPTION_SECURITY_KEY,
   },
+  jwtSecret: envVars.JWT_SECRET,
 };
