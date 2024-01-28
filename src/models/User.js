@@ -24,22 +24,27 @@ async function validateEmail(email) {
     throw new Error("A user is already registered with this email address.");
 }
 
-UserShema.method({});
-
 UserShema.statics = {
-  addUser(email, password) {
+  async addUser(email, password) {
     password = hashPassword(password);
-    return User.create({
+    const userObj = await User.create({
       email,
       password,
     });
+
+    const user = userObj.toObject();
+    delete user.password;
+
+    return user;
   },
   async verifyUser(email, password) {
-    let user = await User.findOne({ email }).lean();
-    if (user) {
+    const userObj = await User.findOne({ email });
+    if (userObj) {
+      const user = userObj.toObject();
       const hash = user.password;
       const isValidPassword = comparePassword(password, hash);
       if (isValidPassword) {
+        delete user.password;
         return user;
       } else {
         throw new Error("Invalid login credentials!");
