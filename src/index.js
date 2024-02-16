@@ -10,8 +10,7 @@ const init = async () => {
     port: APP_PORT,
     host: NODE_ENV === "development" ? "localhost" : APP_HOST,
     routes: {
-      // cors: { origin: NODE_ENV === "development" ? ["*"] : [APP_FRONTEND] },
-      cors: { origin: ["*"] },
+      cors: { origin: NODE_ENV === "development" ? ["*"] : [APP_FRONTEND] },
     },
   });
 
