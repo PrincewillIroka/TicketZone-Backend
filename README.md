@@ -1,1 +1,1 @@
-# university-portal-backend
+# ticket-zone-backend
