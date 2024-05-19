@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import config from "../config";
+import config from "../../config";
 
 const SaltRounds = 8;
 const JWT_SECRET = config.jwtSecret;
