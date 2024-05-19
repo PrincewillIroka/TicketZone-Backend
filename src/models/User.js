@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { comparePassword, hashPassword } from "../utils/AuthHelper";
+import { comparePassword, hashPassword } from "../utils/helpers/AuthHelper";
 const validator = require("validator");
 
 const UserShema = new mongoose.Schema(

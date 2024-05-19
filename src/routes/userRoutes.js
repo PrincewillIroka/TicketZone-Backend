@@ -1,4 +1,4 @@
-import { login, signup } from "../controllers";
+import { login, signUp } from "../controllers";
 
 const getAppHealth = {
   handler: async (request, h) => {
@@ -26,8 +26,8 @@ const userRoutes = [
   },
   {
     method: "PUT",
-    path: "/api/signup",
-    config: signup,
+    path: "/api/signUp",
+    config: signUp,
   },
 ];
 

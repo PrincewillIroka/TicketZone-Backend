@@ -13,7 +13,7 @@ const login = {
   },
 };
 
-const signup = {
+const signUp = {
   handler: async (request, h) => {
     try {
       const { email, password } = request.payload;
@@ -26,4 +26,4 @@ const signup = {
   },
 };
 
-export { login, signup };
+export { login, signUp };

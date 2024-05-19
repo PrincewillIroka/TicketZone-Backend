@@ -4,9 +4,12 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const EventShema = new mongoose.Schema(
   {
     title: String,
+    description: String,
+    venue: String,
+    price: String,
     category: { type: ObjectId, ref: "Category" },
     tags: [],
-    venue: String,
+    images: [],
   },
   { usePushEach: true, timestamps: true }
 );
