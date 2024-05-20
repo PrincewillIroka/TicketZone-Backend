@@ -32,8 +32,7 @@ const getEvents = {
 const getEventsCategory = {
   handler: async (request, h) => {
     try {
-      const { alias } = request.query;
-      console.log({ alias });
+      const { alias } = request.payload;
       const category = await Category.findOne({ alias: alias });
       const categoryId = category?._id.toString();
       const events = await Event.find({ category: categoryId }).populate([
