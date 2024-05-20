@@ -14,7 +14,7 @@ const eventRoutes = [
     config: getCategories,
   },
   {
-    method: "GET",
+    method: "POST",
     path: "/api/eventsCategory",
     config: getEventsCategory,
   },
