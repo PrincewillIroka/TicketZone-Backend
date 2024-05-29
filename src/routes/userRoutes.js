@@ -1,4 +1,5 @@
 import { login, signUp } from "../controllers";
+import { loginData, signUpData } from "../validators/index";
 
 const getAppHealth = {
   handler: async (request, h) => {
@@ -22,12 +23,22 @@ const userRoutes = [
   {
     method: "POST",
     path: "/api/login",
-    config: login,
+    handler: login,
+    options: {
+      validate: {
+        payload: loginData,
+      },
+    },
   },
   {
     method: "PUT",
     path: "/api/signUp",
-    config: signUp,
+    handler: signUp,
+    options: {
+      validate: {
+        payload: signUpData,
+      },
+    },
   },
 ];
 
