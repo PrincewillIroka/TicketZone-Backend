@@ -19,7 +19,15 @@ const getEvents = async (request, h) => {
   try {
     const { searchParam } = request.payload;
     const events = await Event.find({
-      ...(searchParam && { title: new RegExp(searchParam, "i") }),
+      ...(searchParam && {
+        $or: [
+          { title: new RegExp(searchParam, "i") },
+          { venue: new RegExp(searchParam, "i") },
+          {
+            "category.alias": new RegExp(searchParam, "i"),
+          },
+        ],
+      }),
     }).populate([{ path: "category", select: ["name"] }]);
     return h.response({ success: true, data: events }).code(200);
   } catch (error) {
