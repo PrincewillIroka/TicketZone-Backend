@@ -15,7 +15,7 @@ const eventRoutes = [
   {
     method: "POST",
     path: "/api/categories",
-    config: getCategories,
+    handler: getCategories,
   },
   {
     method: "POST",

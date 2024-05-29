@@ -2,17 +2,15 @@ import Category from "../models/Category";
 import Tag from "../models/Tag";
 import Event from "../models/Event";
 
-const getCategories = {
-  handler: async (request, h) => {
-    try {
-      const categories = await Category.find();
-      const tags = await Tag.find();
-      return h.response({ success: true, categories, tags }).code(200);
-    } catch (error) {
-      console.error("Get categories error:", error);
-      return h.response(errorData("Oops something went wrong!")).code(500);
-    }
-  },
+const getCategories = async (request, h) => {
+  try {
+    const categories = await Category.find();
+    const tags = await Tag.find();
+    return h.response({ success: true, categories, tags }).code(200);
+  } catch (error) {
+    console.error("Get categories error:", error);
+    return h.response(errorData("Oops something went wrong!")).code(500);
+  }
 };
 
 const getEvents = async (request, h) => {
