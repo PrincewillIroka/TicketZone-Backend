@@ -4,7 +4,7 @@ import { errorData } from "../utils/helpers/ResponseHelper";
 
 const eventRoutes = [
   {
-    method: "GET",
+    method: "POST",
     path: "/api/events",
     config: getEvents,
   },

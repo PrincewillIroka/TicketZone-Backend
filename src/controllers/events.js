@@ -5,8 +5,8 @@ import Event from "../models/Event";
 const getCategories = {
   handler: async (request, h) => {
     try {
-      const categories = await Category.find({});
-      const tags = await Tag.find({});
+      const categories = await Category.find();
+      const tags = await Tag.find();
       return h.response({ success: true, categories, tags }).code(200);
     } catch (error) {
       console.error("Get categories error:", error);
@@ -18,9 +18,10 @@ const getCategories = {
 const getEvents = {
   handler: async (request, h) => {
     try {
-      const events = await Event.find({}).populate([
-        { path: "category", select: ["name"] },
-      ]);
+      const { searchParam } = request.payload;
+      const events = await Event.find({
+        ...(searchParam && { title: new RegExp(searchParam, "i") }),
+      }).populate([{ path: "category", select: ["name"] }]);
       return h.response({ success: true, data: events }).code(200);
     } catch (error) {
       console.error("Get events error:", error);
