@@ -1,22 +1,31 @@
 import { getCategories, getEvents, getEventsCategory } from "../controllers";
-import { genericValidator } from "../middlewares/Validation";
-import { errorData } from "../utils/helpers/ResponseHelper";
+import { getEventsData, getEventsCategoryData } from "../validators/index";
 
 const eventRoutes = [
   {
-    method: "GET",
+    method: "POST",
     path: "/api/events",
-    config: getEvents,
+    handler: getEvents,
+    options: {
+      validate: {
+        payload: getEventsData,
+      },
+    },
   },
   {
-    method: "GET",
+    method: "POST",
     path: "/api/categories",
     config: getCategories,
   },
   {
     method: "POST",
     path: "/api/eventsCategory",
-    config: getEventsCategory,
+    handler: getEventsCategory,
+    options: {
+      validate: {
+        payload: getEventsCategoryData,
+      },
+    },
   },
 ];
 

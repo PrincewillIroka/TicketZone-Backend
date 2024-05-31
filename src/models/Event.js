@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { MongooseFindByReference } from "mongoose-find-by-reference";
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const EventShema = new mongoose.Schema(
@@ -14,6 +15,7 @@ const EventShema = new mongoose.Schema(
   { usePushEach: true, timestamps: true }
 );
 
+EventShema.plugin(MongooseFindByReference);
 const Event = mongoose.model("Event", EventShema);
 
 export default Event;
