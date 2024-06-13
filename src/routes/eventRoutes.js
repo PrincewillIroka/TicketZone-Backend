@@ -1,4 +1,9 @@
-import { getCategories, getEvents, getEventsCategory } from "../controllers";
+import {
+  getCategories,
+  getEvents,
+  getEventsCategory,
+  createEvent,
+} from "../controllers";
 import { getEventsData, getEventsCategoryData } from "../validators/index";
 
 const eventRoutes = [
@@ -26,6 +31,11 @@ const eventRoutes = [
         payload: getEventsCategoryData,
       },
     },
+  },
+  {
+    method: "POST",
+    path: "/api/createEvent",
+    handler: createEvent,
   },
 ];
 
