@@ -11,6 +11,10 @@ const EventShema = new mongoose.Schema(
     category: { type: ObjectId, ref: "Category" },
     tags: [],
     images: [],
+    quantity: Number,
+    date: String,
+    currency: String,
+    type: String,
   },
   { usePushEach: true, timestamps: true }
 );
