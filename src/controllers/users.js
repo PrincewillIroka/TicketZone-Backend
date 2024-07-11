@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Event from "../models/Event";
 
 const login = async (request, h) => {
   try {
@@ -22,4 +23,21 @@ const signUp = async (request, h) => {
   }
 };
 
-export { login, signUp };
+const getUserEvents = async (request, h) => {
+  try {
+    const { userId, page, limit } = request.payload;
+    const events = await Event.find({ ownerId: userId })
+      .sort({
+        createdAt: -1,
+      })
+      .limit(limit)
+      .skip(limit * page)
+      .lean();
+    return h.response({ success: true, data: events }).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response({ success: false, message: error.message }).code(500);
+  }
+};
+
+export { login, signUp, getUserEvents };

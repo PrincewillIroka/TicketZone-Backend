@@ -15,6 +15,7 @@ const EventShema = new mongoose.Schema(
     date: String,
     currency: String,
     type: String,
+    ownerId: { type: ObjectId, ref: "User" },
   },
   { usePushEach: true, timestamps: true }
 );
