@@ -17,3 +17,9 @@ export const signUpData = Joi.object({
   email: Joi.string().trim(),
   password: Joi.string().trim(),
 });
+
+export const getUserEventsData = Joi.object({
+  userId: Joi.string().trim(),
+  page: Joi.number(),
+  limit: Joi.number(),
+});
