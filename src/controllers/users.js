@@ -48,10 +48,16 @@ const buyTickets = async (request, h) => {
     let success = false;
     let data;
 
-    const events = await Event.findById(eventId);
-    if (events) {
+    const event = await Event.findById(eventId).lean();
+    if (event) {
       const labels = generateUniqueTicketLabels(quantityOfTicketsToBuy);
       const tickets = await Ticket.create({ eventId, buyerId, labels });
+
+      const { quantityOfTicketsCreated } = event;
+      let quantityOfTicketsSold = quantityOfTicketsCreated - labels.length;
+
+      await Event.findOneAndUpdate({ _id: eventId }, { quantityOfTicketsSold });
+
       success = true;
       data = tickets;
     }
