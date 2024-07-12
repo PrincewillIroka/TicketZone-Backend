@@ -29,6 +29,7 @@ const getUserEvents = async (request, h) => {
   try {
     const { userId, page, limit } = request.payload;
     const events = await Event.find({ ownerId: userId })
+      .populate([{ path: "category", select: ["name"] }])
       .sort({
         createdAt: -1,
       })
