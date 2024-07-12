@@ -1,5 +1,7 @@
 import User from "../models/User";
 import Event from "../models/Event";
+import Ticket from "../models/Ticket";
+import { generateUniqueTicketLabels } from "../utils";
 
 const login = async (request, h) => {
   try {
@@ -40,4 +42,25 @@ const getUserEvents = async (request, h) => {
   }
 };
 
-export { login, signUp, getUserEvents };
+const buyTickets = async (request, h) => {
+  try {
+    const { eventId, buyerId, quantityOfTicketsToBuy } = request.payload;
+    let success = false;
+    let data;
+
+    const events = await Event.findById(eventId);
+    if (events) {
+      const labels = generateUniqueTicketLabels(quantityOfTicketsToBuy);
+      const tickets = await Ticket.create({ eventId, buyerId, labels });
+      success = true;
+      data = tickets;
+    }
+
+    return h.response({ success, data }).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response({ success: false, message: error.message }).code(500);
+  }
+};
+
+export { login, signUp, getUserEvents, buyTickets };

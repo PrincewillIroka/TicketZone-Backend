@@ -23,3 +23,9 @@ export const getUserEventsData = Joi.object({
   page: Joi.number(),
   limit: Joi.number(),
 });
+
+export const buyTicketsData = Joi.object({
+  eventId: Joi.string().trim(),
+  buyerId: Joi.string().trim(),
+  quantityOfTicketsToBuy: Joi.number().integer().min(1),
+});
