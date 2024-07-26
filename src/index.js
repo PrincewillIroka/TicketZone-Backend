@@ -8,7 +8,7 @@ const { APP_PORT, APP_FRONTEND, NODE_ENV, APP_HOST } = process.env;
 const init = async () => {
   const server = Hapi.server({
     port: APP_PORT,
-    host: NODE_ENV === "development" ? "localhost" : APP_HOST,
+    host:  APP_HOST,
     routes: {
       cors: { origin: NODE_ENV === "development" ? ["*"] : [APP_FRONTEND] },
     },

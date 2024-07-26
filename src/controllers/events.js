@@ -61,6 +61,7 @@ const createEvent = async (request, h) => {
       type,
       currency,
       date,
+      ownerId,
     } = request.payload;
     const event = await Event.create({
       title,
@@ -72,6 +73,7 @@ const createEvent = async (request, h) => {
       type,
       currency,
       date,
+      ownerId,
     });
 
     return h.response({ success: true, event }).code(200);

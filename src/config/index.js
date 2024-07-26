@@ -14,7 +14,6 @@ const envVarsSchema = Joi.object({
   CLOUDINARY_CLOUD_NAME: Joi.string(),
   CLOUDINARY_API_KEY: Joi.string(),
   CLOUDINARY_API_SECRET: Joi.string(),
-  SERVER_ADDRESS: Joi.string(),
   REDIS_URL: Joi.string(),
   ENCRYPTION_ALGORITHM: Joi.string(),
   ENCRYPTION_INIT_VECTOR: Joi.string(),
@@ -44,7 +43,6 @@ export default {
     api_key: envVars.CLOUDINARY_API_KEY,
     api_secret: envVars.CLOUDINARY_API_SECRET,
   },
-  serverAddress: envVars.SERVER_ADDRESS,
   redisUrl: envVars.REDIS_URL,
   encryption: {
     algorithm: envVars.ENCRYPTION_ALGORITHM,
