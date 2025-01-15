@@ -83,4 +83,21 @@ const createEvent = async (request, h) => {
   }
 };
 
-export { getCategories, getEvents, getEventsCategory, createEvent };
+const deleteEvent = async (request, h) => {
+  try {
+    const { eventId } = request.payload;
+    const result = await Event.findByIdAndDelete(eventId);
+    return h.response({ success: true, data: result }).code(200);
+  } catch (error) {
+    console.error("Get events error:", error);
+    return h.response(errorData("Oops something went wrong!")).code(500);
+  }
+};
+
+export {
+  getCategories,
+  getEvents,
+  getEventsCategory,
+  createEvent,
+  deleteEvent,
+};
