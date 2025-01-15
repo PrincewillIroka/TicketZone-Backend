@@ -3,6 +3,7 @@ import {
   getEvents,
   getEventsCategory,
   createEvent,
+  updateEvent,
 } from "../controllers";
 import { getEventsData, getEventsCategoryData } from "../validators/index";
 
@@ -36,6 +37,11 @@ const eventRoutes = [
     method: "POST",
     path: "/api/createEvent",
     handler: createEvent,
+  },
+  {
+    method: "PATCH",
+    path: "/api/updateEvent",
+    handler: updateEvent,
   },
 ];
 

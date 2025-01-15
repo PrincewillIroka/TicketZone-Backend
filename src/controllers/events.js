@@ -83,4 +83,63 @@ const createEvent = async (request, h) => {
   }
 };
 
-export { getCategories, getEvents, getEventsCategory, createEvent };
+const updateEvent = async (request, h) => {
+  try {
+    const {
+      eventId,
+      title,
+      venue,
+      description,
+      category,
+      price,
+      quantityOfTicketsCreated,
+      type,
+      currency,
+      date,
+      ownerId,
+    } = request.payload;
+
+    console.log(
+      "reer----",
+      eventId,
+      title,
+      venue,
+      description,
+      category,
+      price,
+      quantityOfTicketsCreated,
+      type,
+      currency,
+      date,
+      ownerId
+    );
+
+    const event = await Event.findOneAndUpdate(
+      { _id: eventId, ownerId },
+      {
+        ...(title && { title }),
+        ...(venue && { venue }),
+        ...(description && { description }),
+        ...(category && { category }),
+        ...(price && { price }),
+        ...(quantityOfTicketsCreated && { quantityOfTicketsCreated }),
+        ...(type && { type }),
+        ...(currency && { currency }),
+        ...(date && { date }),
+      }
+    );
+
+    return h.response({ success: true, event }).code(200);
+  } catch (error) {
+    console.error("Get events error:", error);
+    return h.response(errorData("Oops something went wrong!")).code(500);
+  }
+};
+
+export {
+  getCategories,
+  getEvents,
+  getEventsCategory,
+  createEvent,
+  updateEvent,
+};
