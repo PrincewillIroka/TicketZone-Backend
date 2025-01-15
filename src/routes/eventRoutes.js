@@ -4,6 +4,7 @@ import {
   getEventsCategory,
   createEvent,
   deleteEvent,
+  updateEvent,
 } from "../controllers";
 import { getEventsData, getEventsCategoryData } from "../validators/index";
 
@@ -42,6 +43,11 @@ const eventRoutes = [
     method: "DELETE",
     path: "/api/deleteEvent",
     handler: deleteEvent,
+  },
+  {
+    method: "PATCH",
+    path: "/api/updateEvent",
+    handler: updateEvent,
   },
 ];
 

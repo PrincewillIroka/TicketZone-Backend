@@ -36,7 +36,7 @@ const userRoutes = [
     },
   },
   {
-    method: "PUT",
+    method: "POST",
     path: "/api/signUp",
     handler: signUp,
     options: {
